@@ -4,17 +4,19 @@
 #include <SDL/SDL.h>
 #include <GL/gl.h>
 
-class TextureLoader {
-  public:
-  TextureLoader();
-  GLuint GetTexture(const char *file_name);
-};
-
 struct TextureInfo {
   GLuint texture;
   GLint colors;
   int width;
   int height;
 };
+
+class TextureLoader {
+  public:
+  TextureLoader();
+  TextureInfo GetTexture(const char *file_name);
+};
+
+
 
 #endif

@@ -24,7 +24,7 @@ bool Application::Initialize() {
   _display = SDL_SetVideoMode(_width, _height, 32, SDL_OPENGL);
   if(_display == NULL) return false;
 
-  glClearColor(0,0,0,0);
+  glClearColor(1,1,1,0);
   glClearDepth(1.0f);
   glViewport(0, 0, _width, _height);
   glMatrixMode(GL_PROJECTION);
@@ -41,6 +41,7 @@ bool Application::Initialize() {
 
 int Application::Run(PlayerInfo player_info) {
   if(!Initialize()) return -1;
+  SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
   
   player_info_ = player_info;
   SDL_Event event;
@@ -63,6 +64,14 @@ void Application::HandleEvent(SDL_Event* event) {
     case SDL_KEYDOWN:
       if (event->key.keysym.sym == SDLK_ESCAPE)
         _running = false;
+      if (event->key.keysym.sym == SDLK_DOWN)
+        player_info_.y += 4;
+      if (event->key.keysym.sym == SDLK_UP)
+        player_info_.y -= 4;
+      if (event->key.keysym.sym == SDLK_RIGHT)
+        player_info_.x += 4;
+      if (event->key.keysym.sym == SDLK_LEFT)
+        player_info_.x -= 4;
 
       break;
     case SDL_QUIT:
@@ -88,19 +97,20 @@ void Application::Render() {
   glBegin( GL_QUADS );
 	  //Bottom-left vertex (corner)
 	  glTexCoord2i( 0, 0 );
-	  glVertex2i(0,0);
+	  glVertex2i(player_info_.x,player_info_.y);
    
 	  //Bottom-right vertex (corner)
 	  glTexCoord2i( 1, 0 );
-	  glVertex2i( screen_width, 0 );
+	  glVertex2i( player_info_.x + texture_info.width, player_info_.y );
    
 	  //Top-right vertex (corner)
 	  glTexCoord2i( 1, 1 );
-	  glVertex2i( screen_width, 228.f, 0.f );
+	  glVertex2i( player_info_.x + texture_info.width,
+          player_info_.y + texture_info.height );
    
 	  //Top-left vertex (corner)
 	  glTexCoord2i( 0, 1 );
-	  glVertex3f( 100.f, 228.f, 0.f );
+	  glVertex2i( player_info_.x, player_info_.y + texture_info.height);
   glEnd();
 
   SDL_GL_SwapBuffers();

@@ -39,8 +39,8 @@ TextureInfo TextureLoader::GetTexture(const char *file_name) {
   
   texture_info.texture = texture;
   texture_info.colors = num_colors;
-  texture_info.width = width;
-  texture_info.height = height;
+  texture_info.width = surface->w;
+  texture_info.height = surface->h;
 
   return texture_info;
 }

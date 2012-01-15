@@ -3,11 +3,17 @@
 #include "SDL/SDL.h"
 #include "GL/gl.h"
 
+struct PlayerInfo {
+  int x;
+  int y;
+};
+
 class Application 
 {
   private:
     bool _running;
     SDL_Surface* _display;
+    PlayerInfo player_info_;
     
     int _height;
     int _width;
@@ -16,7 +22,7 @@ class Application
     Application();
     void SetSize(int width, int height);
     bool Initialize();
-    int Run();
+    int Run(PlayerInfo player_info);
     void HandleEvent(SDL_Event* event);
     void Loop();
     void Render();
@@ -24,9 +30,4 @@ class Application
 
 };
 
-
-struct PlayerInfo {
-  int x;
-  int y;
-};
 #endif

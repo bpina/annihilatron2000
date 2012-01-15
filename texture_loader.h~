@@ -7,7 +7,7 @@
 class TextureLoader {
   public:
   TextureLoader();
-  GLuint GetTexture(const char *file_name);
+  TextureInfo GetTexture(const char *file_name);
 };
 
 struct TextureInfo {
