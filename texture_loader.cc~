@@ -42,5 +42,9 @@ TextureInfo TextureLoader::GetTexture(const char *file_name) {
   texture_info.width = surface->w;
   texture_info.height = surface->h;
 
+  if ( surface ) { 
+	  SDL_FreeSurface( surface );
+  }
+
   return texture_info;
 }

@@ -3,7 +3,15 @@
 #include "SDL/SDL.h"
 #include "GL/gl.h"
 
-struct PlayerInfo {
+enum PlayerFacing { FACING_LEFT, FACING_RIGHT };
+
+class PlayerInfo {
+  private:
+  int jump_start_time_;
+
+  public:
+  PlayerInfo();
+  PlayerFacing player_facing;
   int x;
   int y;
 };
