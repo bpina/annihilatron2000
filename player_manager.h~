@@ -1,0 +1,8 @@
+#ifndef PLAYER_MANAGER_H
+#define PLAYER_MANAGER_H
+
+struct PlayerInfo {
+  
+}
+
+#endif
