@@ -1,4 +1,4 @@
-require's opengl and sdl
+requires OpenGL and SDL
 
 run ./build.sh
 then, run ./testapp
