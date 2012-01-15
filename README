@@ -1,0 +1,4 @@
+require's opengl and sdl
+
+run ./build.sh
+then, run ./testapp
